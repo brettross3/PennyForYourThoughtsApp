@@ -14,4 +14,6 @@ const AppNavigator = () => {
  );
 };
 
+//add the actual game and settings components here
+
 export default AppNavigator;
