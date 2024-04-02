@@ -6,10 +6,10 @@ const MenuScreen = ({ navigation }) => {
     <View style={styles.container}>
       <Text style={styles.title}>Penny For Your Thoughts</Text>
       <View style={styles.buttonsContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('GameScreen')}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('PFYTgame')}>
           <Text style={styles.buttonText}>Start Game</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SettingsScreen')}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Settings')}>
           <Text style={styles.buttonText}>Settings</Text>
         </TouchableOpacity>
       </View>
