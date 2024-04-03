@@ -1,16 +1,19 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-// I NEED TO INTEGRATE WITH Gamepage 
-
-function SummaryPage({ correctGuesses, accuracy, startOver }) {
+function SummaryPage({ word, correctGuesses, incorrectGuesses, accuracy, startOver }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>You got {correctGuesses} out of 5 words.</Text>
-      <Text style={styles.text}>Accuracy is: {accuracy}%</Text>
-      <TouchableOpacity style={styles.button} onPress={startOver}>
-        <Text style={styles.buttonText}>Return to Main Menu</Text>
-      </TouchableOpacity>
+      <Text style={styles.summary}>Summary</Text>
+      <View style={styles.content}>
+        <Text style={styles.text}>Word: {word}</Text>
+        <Text style={styles.text}>Correct Guesses: {correctGuesses}</Text>
+        <Text style={styles.text}>Incorrect Guesses: {incorrectGuesses}</Text>
+        <Text style={styles.text}>Accuracy: {accuracy.toFixed(2) * 100}%</Text>
+        <TouchableOpacity onPress={startOver} style={styles.button}>
+          <Text style={styles.buttonText}>Return to Main Menu</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -21,7 +24,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
-    backgroundColor: 'BCD8C1',
+    backgroundColor: '#BCD8C1',
+  },
+  summary: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  content: {
+    alignItems: 'center',
   },
   text: {
     fontSize: 20,
@@ -32,7 +43,7 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   button: {
-    backgroundColor: '222E50',
+    backgroundColor: '#222E50',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,

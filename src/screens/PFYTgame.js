@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import SummaryPage from '../screens/SummaryPage';
 
 const PFYTgame = () => {
  const targetWord = 'example';
@@ -24,6 +25,16 @@ const PFYTgame = () => {
       }
     }
  };
+ const accuracy = correctLetters.length / (correctLetters.length + incorrectLetters.length);
+
+ const resetGame = () => {
+    setWord(Array(targetWord.length).fill('_'));
+    setGuessedLetters([]);
+    setCorrectLetters([]);
+    setIncorrectLetters([]);
+    setMoney(100);
+    setLevel(1);
+ };
 
  return (
     <View style={styles.container}>
@@ -44,8 +55,23 @@ const PFYTgame = () => {
             <Text style={styles.letterText}>{letter}</Text>
           </TouchableOpacity>
         ))}
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('SummaryPage')}
+        >
+          <Text style={styles.buttonText}>Go to Summary Page</Text>
+        </TouchableOpacity>
       </View>
       <Text style={styles.word}>{word.join(' ')}</Text>
+         {accuracy === 1 && (
+        <SummaryPage
+          word={targetWord}
+          correctGuesses={correctLetters.length}
+          incorrectGuesses={incorrectLetters.length}
+          accuracy={accuracy}
+          startOver={resetGame}
+        />
+      )}
     </View>
  );
 };
