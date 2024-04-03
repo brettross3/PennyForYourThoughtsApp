@@ -55,12 +55,6 @@ const PFYTgame = () => {
             <Text style={styles.letterText}>{letter}</Text>
           </TouchableOpacity>
         ))}
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate('SummaryPage')}
-        >
-          <Text style={styles.buttonText}>Go to Summary Page</Text>
-        </TouchableOpacity>
       </View>
       <Text style={styles.word}>{word.join(' ')}</Text>
          {accuracy === 1 && (
