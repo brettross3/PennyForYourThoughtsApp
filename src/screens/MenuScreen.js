@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
-
+import '../../assets/fonts/IrishGrover-Regular.ttf'
 const MenuScreen = ({ navigation }) => {
  return (
     <View style={styles.container}>
@@ -28,10 +28,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#bcd8c1',
  },
  title: {
+    fontFamily: 'IrishGrover-Regular',
     fontSize: 24,
     marginBottom: 20,
     color: 'black',
-    // font family for 'Irish Grover' needs to get linked 
+    
  },
  buttonsContainer: {
     flexDirection: 'column',
