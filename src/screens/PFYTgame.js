@@ -57,7 +57,7 @@ const PFYTgame = () => {
       </View>
       <Text style={styles.word}>{word.join(' ')}</Text>
          {accuracy === 1 && (
-        <ResultPage
+        <SummaryPage
           word={targetWord}
           correctGuesses={correctLetters.length}
           incorrectGuesses={incorrectLetters.length}
