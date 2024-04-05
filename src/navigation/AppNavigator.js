@@ -1,7 +1,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MenuScreen from '../screens/MenuScreen';
-import Settings from '../screens/Settings';
+import Settings from '../screens/SettingsModal';
 import SummaryPage from '../screens/SummaryPage';
 import PFYTgame from '../screens/PFYTgame';
 

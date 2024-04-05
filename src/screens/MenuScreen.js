@@ -1,20 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import SettingsModal from './SettingsModal';
+import CogButton from '../components/SettingsButton';
 import '../../assets/fonts/IrishGrover-Regular.ttf'
+
+
 const MenuScreen = ({ navigation }) => {
- return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Penny For Your Thoughts</Text>
-      <View style={styles.buttonsContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('PFYTgame')}>
-          <Text style={styles.buttonText}>Start Game</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Settings')}>
-          <Text style={styles.buttonText}>Settings</Text>
-        </TouchableOpacity>
+   const [modalVisible, setModalVisible] = useState(false);
+
+   const toggleModal = () => {
+      setModalVisible(!modalVisible);
+   };
+
+   return (
+      <View style={styles.container}>
+         <Text style={styles.title}>Penny For Your Thoughts</Text>
+         <View style={styles.buttonsContainer}>
+         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('PFYTgame')}>
+            <Text style={styles.buttonText}>Start Game</Text>
+         </TouchableOpacity>
+         <CogButton onPress = {toggleModal} />
+         <SettingsModal visible={modalVisible} onClose={toggleModal} />
+         </View>
       </View>
-    </View>
- );
+   );
 };
 
 //High Score fetch will be added here
