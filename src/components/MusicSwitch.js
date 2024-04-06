@@ -14,7 +14,7 @@ function MusicSwitch() {
             }
         } else {
             if (!sound) {
-                sound = new Sound(require('../assets/sample-9s.mp3'), Sound.MAIN_BUNDLE, (error) =>{
+                sound = new Sound(require('../../assets/sound/sample-9s.mp3'), Sound.MAIN_BUNDLE, (error) =>{
                     if (error) {
                         console.log('Failed to load the sound', error);
                         return;
@@ -32,7 +32,6 @@ function MusicSwitch() {
 
     return (
         <View>
-            <Text>Music</Text>
             <Switch
                 value={isMuted}
                 onValueChange={toggleSwitch} 

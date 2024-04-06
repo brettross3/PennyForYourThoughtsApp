@@ -3,67 +3,89 @@ import { Modal, View, Text, StyleSheet } from 'react-native';
 import MusicSwitch from "../components/MusicSwitch";
 import VibrateSwitch from "../components/VibrateSwitch";
 import ExitButton from "../components/ExitButton";
+import '../../assets/fonts/IrishGrover-Regular.ttf'
 
 const SettingsModal = ({ visible, onClose }) => {
 
-   const modalContent =(
+   const modalContent = (
      <View style={styles.modalContainer}>
-           <View style={styles.modalContent}>
-             <Text style={styles.modalTitle}>Settings</Text>    
-             <View style={styles.modalOptions}>
-               <MusicSwitch />
-               <VibrateSwitch />
-             </View>
-             <ExitButton onPress={onClose}/>
+       <View style={styles.modalContent}>
+         <View style={styles.header}>
+           <Text style={styles.modalTitle}>Settings</Text>
+           <ExitButton onPress={onClose} />
+         </View>
+         <View style={styles.modalOptions}>
+           <View style={styles.option}>
+             <Text style={[styles.optionText, {flex: 1 }]}>Music</Text>
+             <MusicSwitch />
+           </View>
+           <View style={styles.option}>
+             <Text style={[styles.optionText, { flex: 1 }]}>Vibrate</Text>
+             <VibrateSwitch />
            </View>
          </View>
+       </View>
+     </View>
    );
 
    return (
-       <Modal
-         animationType="slide"
-         transparent={true}
-         visible={visible}
-         onRequestClose={onClose}
-         style={{ justifyContent: 'center', alignItems: 'center'}}
-       >
-             {modalContent}
-       </Modal>
-     );
+     <Modal
+       animationType="slide"
+       transparent={true}
+       visible={visible}
+       onRequestClose={onClose}
+       style={{ justifyContent: 'center', alignItems: 'center' }}
+     >
+       {modalContent}
+     </Modal>
+   );
 }
 
-const styles = StyleSheet.create({
-    container: {
-       flex: 1,
-       justifyContent: 'center',
-       alignItems: 'center',
-       backgroundColor: '#bcd8c1',
-    },
-    title: {
-       fontSize: 24,
-       marginBottom: 20,
-       color: 'black',
-       // font family for 'Irish Grover' needs to get linked 
-    },
-    buttonsContainer: {
-       flexDirection: 'column',
-       justifyContent: 'space-between',
-       width: '80%',
-       marginTop: 20, // Add some space above the buttons
-       alignItems: 'center',
-    },
-    button: {
-       width: '70%', 
-       padding: 10,
-       backgroundColor: '#222e50',
-       borderRadius: 5,
-       marginBottom: 40, // Add space between buttons
-    },
-    buttonText: {
-       color: '#fff',
-       fontSize: 18,
-       textAlign: 'center',
-    },
-   });
-
 export default SettingsModal;
+
+const styles = StyleSheet.create({
+   modalContainer: {
+     flex: 1,
+     backgroundColor: 'rgba(0,0,0,0.5)',
+     alignItems: 'center',
+     justifyContent: 'center',
+   },
+   modalContent: {
+     backgroundColor: '#bcd8c1',
+     borderRadius: 10,
+     padding: 20,
+     width: '70%', // Adjusted width to 80% for better fit
+     maxWidth: 400,
+     shadowColor: '#000',
+     shadowOffset: { width: 0, height: 2 },
+     shadowOpacity: 0.8,
+     shadowRadius: 2,
+     elevation: 5,
+   },
+   header: {
+     flexDirection: 'row',
+     justifyContent: 'space-between',
+     alignItems: 'center',
+     marginBottom: 10,
+   },
+   modalTitle: {
+      fontFamily: 'IrishGrover-Regular',
+     fontSize: 30,
+     color: 'white',
+   },
+   modalOptions: {
+      paddingVertical: 10,
+   },
+   option: {
+      flexDirection: 'row',
+      alignItems: 'center',
+     marginVertical: 10,
+     paddingHorizontal: '10%',
+   },
+   optionText: {
+      flex: 1,
+      fontFamily: 'IrishGrover-Regular',
+     fontSize: 28,
+     color: 'white',
+   },
+});

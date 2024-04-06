@@ -10,7 +10,6 @@ function VibrateSwitch() {
 
     return (
         <View>
-            <Text>Vibrate</Text>
             <Switch
                 value={VibrationEnabled}
                 onValueChange={toggleVibration} />
