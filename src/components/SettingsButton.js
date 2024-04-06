@@ -6,7 +6,7 @@ import { faGear } from '@fortawesome/free-solid-svg-icons/faGear';
 const CogButton = ({ onPress }) => {
   return (
     <TouchableOpacity onPress={onPress} style={{ flexDirection: 'row', alignItems: 'center' }}>
-      <FontAwesomeIcon icon={ faGear } />
+      <FontAwesomeIcon icon={ faGear }  size={35} color="#222e50"/>
     </TouchableOpacity>
   );
 };

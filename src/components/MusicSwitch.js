@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Switch, Text, } from 'react-native';
+import { View, Switch, } from 'react-native';
 import Sound from 'react-native-sound';
 
 function MusicSwitch() {

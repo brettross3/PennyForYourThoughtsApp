@@ -7,7 +7,7 @@ import { faXmarkCircle } from '@fortawesome/free-solid-svg-icons/faXmarkCircle';
 const ExitButton = ({ onPress }) => {
   return (
     <TouchableOpacity onPress={onPress} style={{ flexDirection: 'row', alignItems: 'center' }}>
-      <FontAwesomeIcon icon={ faXmarkCircle } />
+      <FontAwesomeIcon icon={ faXmarkCircle } size={30} color="#222e50"/>
     </TouchableOpacity>
   );
 };
