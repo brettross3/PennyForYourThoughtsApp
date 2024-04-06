@@ -1,5 +1,5 @@
 import React, { useState }from "react";
-import { View, Text, Switch } from 'react-native';
+import { View, Switch } from 'react-native';
 
 function VibrateSwitch() {
     const [VibrationEnabled, setVibrationEnabled] = useState(true);

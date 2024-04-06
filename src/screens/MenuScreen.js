@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import SettingsModal from './SettingsModal';
-import CogButton from '../components/SettingsButton';
+import SettingsButton from '../components/SettingsButton';
 import '../../assets/fonts/IrishGrover-Regular.ttf'
 
 
@@ -19,7 +19,7 @@ const MenuScreen = ({ navigation }) => {
          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('PFYTgame')}>
             <Text style={styles.buttonText}>Start Game</Text>
          </TouchableOpacity>
-         <CogButton onPress = {toggleModal} />
+         <SettingsButton onPress = {toggleModal} />
          <SettingsModal visible={modalVisible} onClose={toggleModal} />
          </View>
       </View>

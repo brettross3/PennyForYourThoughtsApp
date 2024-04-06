@@ -6,7 +6,7 @@ import ExitButton from "../components/ExitButton";
 import '../../assets/fonts/IrishGrover-Regular.ttf'
 
 const SettingsModal = ({ visible, onClose }) => {
-
+   
    const modalContent = (
      <View style={styles.modalContainer}>
        <View style={styles.modalContent}>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
      backgroundColor: '#bcd8c1',
      borderRadius: 10,
      padding: 20,
-     width: '70%', // Adjusted width to 80% for better fit
+     width: '70%',
      maxWidth: 400,
      shadowColor: '#000',
      shadowOffset: { width: 0, height: 2 },
