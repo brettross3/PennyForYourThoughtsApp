@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, } from 'react-native';
 import SummaryPage from '../screens/SummaryPage';
-import SettingsModal from './SettingsModal';
 import SettingsButton from '../components/SettingsButton';
 
-const PFYTgame = () => {
+
+const PFYTgame = ({ route }) => {
+// Destructuring assignment to the route parameter to access settings modal in all screens
+const { toggleSettings } = route.params || {};
+
  const targetWord = 'example';
  const [word, setWord] = useState(Array(targetWord.length).fill('_'));
  const [guessedLetters, setGuessedLetters] = useState([]);
@@ -12,13 +15,6 @@ const PFYTgame = () => {
  const [incorrectLetters, setIncorrectLetters] = useState([]);
  const [money, setMoney] = useState(100);
  const [level, setLevel] = useState(1);
-
- //Settings button//
- const [modalVisible, setModalVisible] = useState(false);
-
- const toggleModal = () => {
-    setModalVisible(!modalVisible);
- };
 
  const handleGuess = (letter) => {
     if (!guessedLetters.includes(letter)) {
@@ -75,8 +71,7 @@ const PFYTgame = () => {
         />
       )}
       {/* Settings Button */}
-      <SettingsButton onPress={toggleModal}/>
-      <SettingsModal visible={modalVisible} onClose={toggleModal} />
+      <SettingsButton onPress={toggleSettings}/>
     </View>
  );
 };

@@ -1,16 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import SettingsModal from './SettingsModal';
-import SettingsButton from '../components/SettingsButton';
 import '../../assets/fonts/IrishGrover-Regular.ttf'
+import SettingsButton from '../components/SettingsButton';
 
 
-const MenuScreen = ({ navigation }) => {
-   const [modalVisible, setModalVisible] = useState(false);
+const MenuScreen = ({ navigation, route }) => {
 
-   const toggleModal = () => {
-      setModalVisible(!modalVisible);
-   };
+   const { toggleSettings } = route.params || {};
 
    return (
       <View style={styles.container}>
@@ -19,8 +15,7 @@ const MenuScreen = ({ navigation }) => {
          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('PFYTgame')}>
             <Text style={styles.buttonText}>Start Game</Text>
          </TouchableOpacity>
-         <SettingsButton onPress = {toggleModal} />
-         <SettingsModal visible={modalVisible} onClose={toggleModal} />
+         <SettingsButton onPress= {toggleSettings} />
          </View>
       </View>
    );
