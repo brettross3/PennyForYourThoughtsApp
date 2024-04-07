@@ -1,44 +1,45 @@
-import React from "react";
-import { Modal, View, Text, StyleSheet } from 'react-native';
-import MusicSwitch from "../components/MusicSwitch";
-import VibrateSwitch from "../components/VibrateSwitch";
+import React, { useContext, useState } from "react";
+import { Modal, View, Text, StyleSheet, Switch } from 'react-native';
 import ExitButton from "../components/ExitButton";
 import '../../assets/fonts/IrishGrover-Regular.ttf'
+import { SettingsContext } from "../components/SettingsContext";
 
-const SettingsModal = ({ visible, onClose }) => {
-   
-   const modalContent = (
-     <View style={styles.modalContainer}>
-       <View style={styles.modalContent}>
-         <View style={styles.header}>
-           <Text style={styles.modalTitle}>Settings</Text>
-           <ExitButton onPress={onClose} />
-         </View>
-         <View style={styles.modalOptions}>
-           <View style={styles.option}>
-             <Text style={[styles.optionText, {flex: 1 }]}>Music</Text>
-             <MusicSwitch />
-           </View>
-           <View style={styles.option}>
-             <Text style={[styles.optionText, { flex: 1 }]}>Vibrate</Text>
-             <VibrateSwitch />
-           </View>
-         </View>
-       </View>
-     </View>
-   );
+const SettingsModal = ({ visible, onClose, }) => {
+  const { isMusicEnabled, toggleMusic } = useContext(SettingsContext);
+  const { isVibrateEnabled, toggleVibrate} = useContext(SettingsContext);
 
-   return (
-     <Modal
-       animationType="slide"
-       transparent={true}
-       visible={visible}
-       onRequestClose={onClose}
-       style={{ justifyContent: 'center', alignItems: 'center' }}
-     >
-       {modalContent}
-     </Modal>
-   );
+  const modalContent = (
+    <View style={styles.modalContainer}>
+      <View style={styles.modalContent}>
+        <View style={styles.header}>
+          <Text style={styles.modalTitle}>Settings</Text>
+          <ExitButton onPress={onClose} />
+        </View>
+        <View style={styles.modalOptions}>
+          <View style={styles.option}>
+            <Text style={[styles.optionText, {flex: 1 }]}>Music</Text>
+            <Switch value={isMusicEnabled} onValueChange={toggleMusic} />
+          </View>
+          <View style={styles.option}>
+            <Text style={[styles.optionText, { flex: 1 }]}>Vibrate</Text>
+            <Switch value={isVibrateEnabled} onValueChange={toggleVibrate} />
+          </View>
+        </View>
+      </View>
+    </View>
+  );
+
+  return (
+    <Modal
+      animationType="slide"
+      transparent={true}
+      visible={visible}
+      onRequestClose={onClose}
+      style={{ justifyContent: 'center', alignItems: 'center' }}
+    >
+      {modalContent}
+    </Modal>
+  );
 }
 
 export default SettingsModal;

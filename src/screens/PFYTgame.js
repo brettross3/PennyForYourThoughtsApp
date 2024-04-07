@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, } from 'react-native';
+import React, { useContext, useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet,Vibration} from 'react-native';
 import SummaryPage from '../screens/SummaryPage';
 import SettingsButton from '../components/SettingsButton';
+import SettingsModal from './SettingsModal';
+import { SettingsContext } from '../components/SettingsContext';
 
 
-const PFYTgame = ({ route }) => {
-// Destructuring assignment to the route parameter to access settings modal in all screens
-const { toggleSettings } = route.params || {};
+
+const PFYTgame = ({ }) => {
+  const [isSettingsModalVisible, setIsSettingsModalVisible] = useState(false);
+  const {isVibrateEnabled} = useContext(SettingsContext);
 
  const targetWord = 'example';
  const [word, setWord] = useState(Array(targetWord.length).fill('_'));
@@ -26,6 +29,9 @@ const { toggleSettings } = route.params || {};
       } else {
         setIncorrectLetters([...incorrectLetters, letter]);
         setMoney(money - 10);
+        if (isVibrateEnabled) { // Access vibrate state from SettingsContext
+          Vibration.vibrate(500); // Vibrate for 500ms
+        }
       }
     }
  };
@@ -70,8 +76,8 @@ const { toggleSettings } = route.params || {};
           startOver={resetGame}
         />
       )}
-      {/* Settings Button */}
-      <SettingsButton onPress={toggleSettings}/>
+      <SettingsButton onPress={() => setIsSettingsModalVisible(true)} />
+      <SettingsModal visible={isSettingsModalVisible} onClose={() => setIsSettingsModalVisible(false)} />
     </View>
  );
 };
