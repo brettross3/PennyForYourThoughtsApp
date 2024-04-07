@@ -11,7 +11,7 @@ function SummaryPage({ word, correctGuesses, incorrectGuesses, accuracy, startOv
         <Text style={styles.text}>Incorrect Guesses: {incorrectGuesses}</Text>
         <Text style={styles.text}>Accuracy: {accuracy.toFixed(2) * 100}%</Text>
         <TouchableOpacity onPress={startOver} style={styles.button}>
-          <Text style={styles.buttonText}>Return to Main Menu</Text>
+          <Text style={styles.buttonText}>Try Again</Text>
         </TouchableOpacity>
       </View>
     </View>
