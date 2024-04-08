@@ -1,15 +1,16 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Vibration } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import SummaryPage from '../screens/SummaryPage';
 import SettingsButton from '../components/SettingsButton';
 import SettingsModal from './SettingsModal';
 import { SettingsContext } from '../components/SettingsContext';
-import WordsManager from '../components/WordsManager'; // Adjust the import path as necessary
+import WordsManager from '../components/WordsManager';
+import { SoundEffects, playCorrectSound, playIncorrectSound, playCompleteSound, playGamOverSound } from '../components/SoundEffects';
 
 const PFYTgame = () => {
   const [isSettingsModalVisible, setIsSettingsModalVisible] = useState(false);
-  const { isVibrateEnabled } = useContext(SettingsContext);
-
+  const { isSoundEnabled } = useContext(SettingsContext);
+  
   const [targetWord, setTargetWord] = useState('');
   const [word, setWord] = useState([]);
   const [guessedLetters, setGuessedLetters] = useState([]);
@@ -40,11 +41,14 @@ const PFYTgame = () => {
       setWord(newWord);
       if (targetWord.includes(letter)) {
         setCorrectLetters([...correctLetters, letter]);
+        if (isSoundEnabled) {
+          playCorrectSound();
+        }
       } else {
         setIncorrectLetters([...incorrectLetters, letter]);
         setMoney(money - 10);
-        if (isVibrateEnabled) { // Access vibrate state from SettingsContext
-          Vibration.vibrate(500); // Vibrate for 500ms
+        if (isSoundEnabled) {
+          playIncorrectSound();
         }
       }
     }
@@ -54,12 +58,19 @@ const PFYTgame = () => {
     const checkGameCompletion = () => {
       if (word.join('') === targetWord) {
         setGameComplete(true);
+        if (isSoundEnabled) {
+          playCompleteSound();
+        }
       }
     };
 
     checkGameCompletion();
   }, [word, targetWord]);
 
+  // sound effect to play when game is over
+  // if (isSoundEnabled) {
+  //   playGameOverSound();
+  // }
   const resetGame = () => {
     setScore(score + money); // Update the score with the left-over money
     setMoney(150);

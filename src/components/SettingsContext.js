@@ -3,19 +3,19 @@ import React, { createContext, useState } from 'react';
 const SettingsContext = createContext({
   isMusicEnabled: true,
   setIsMusicEnabled: () => {},
-  isVibrateEnabled: true,
-  setIsVibrateEnabled: () => {},
+  isSoundEnabled: true,
+  setIsSoundEnabled: () => {},
 });
 
 const SettingsProvider = ({ children }) => {
   const [isMusicEnabled, setIsMusicEnabled] = useState(true);
-  const [isVibrateEnabled, setIsVibrateEnabled] = useState(true);
+  const [isSoundEnabled, setIsSoundEnabled] = useState(true);
 
   const toggleMusic = () => setIsMusicEnabled(!isMusicEnabled);
-  const toggleVibrate = () => setIsVibrateEnabled(!isVibrateEnabled);
+  const toggleSound = () => setIsSoundEnabled(!isSoundEnabled);
 
   return (
-    <SettingsContext.Provider value={{ isMusicEnabled, toggleMusic, isVibrateEnabled, toggleVibrate }}>
+    <SettingsContext.Provider value={{ isMusicEnabled, toggleMusic, isSoundEnabled, toggleSound }}>
       {children}
     </SettingsContext.Provider>
   );

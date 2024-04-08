@@ -6,7 +6,7 @@ import { SettingsContext } from "../components/SettingsContext";
 
 const SettingsModal = ({ visible, onClose, }) => {
   const { isMusicEnabled, toggleMusic } = useContext(SettingsContext);
-  const { isVibrateEnabled, toggleVibrate} = useContext(SettingsContext);
+  const { isSoundEnabled, toggleSound} = useContext(SettingsContext);
 
   const modalContent = (
     <View style={styles.modalContainer}>
@@ -21,8 +21,8 @@ const SettingsModal = ({ visible, onClose, }) => {
             <Switch value={isMusicEnabled} onValueChange={toggleMusic} />
           </View>
           <View style={styles.option}>
-            <Text style={[styles.optionText, { flex: 1 }]}>Vibrate</Text>
-            <Switch value={isVibrateEnabled} onValueChange={toggleVibrate} />
+            <Text style={[styles.optionText, { flex: 1 }]}>Sound</Text>
+            <Switch value={isSoundEnabled} onValueChange={toggleSound} />
           </View>
         </View>
       </View>
