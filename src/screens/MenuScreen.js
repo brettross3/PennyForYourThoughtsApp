@@ -37,7 +37,7 @@ const MenuScreen = ({ navigation }) => {
          <Text style={styles.HighScore}>high score: {highScore}</Text>
          <View style={styles.buttonsContainer}>
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('PFYTgame')}>
-               <Text style={styles.buttonText}>Start New Game</Text>
+               <Text style={styles.buttonText}>Start Game</Text>
             </TouchableOpacity>
             <SettingsButton onPress={() => setIsSettingsModalVisible(true)} />
             <SettingsModal
