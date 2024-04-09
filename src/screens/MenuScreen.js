@@ -1,18 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import '../../assets/fonts/IrishGrover-Regular.ttf'
 import SettingsButton from '../components/SettingsButton';
 import SettingsModal from './SettingsModal';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const MenuScreen = ({ navigation }) => {
   const [isSettingsModalVisible, setIsSettingsModalVisible]=useState(false);
+  const [lastScore, setLastScore] = useState(0);
+  const [highScore, setHighScore] = useState(0);
+
+  useEffect(() => {
+   const getLastScore = async () => {
+     try {
+       const score = await AsyncStorage.getItem('lastScore');
+       if (score !== null) {
+         setLastScore(JSON.parse(score));
+       }
+     } catch (error) {
+       console.error('Error retrieving last score', error);
+     }
+   };
+
+   getLastScore();
+}, []);
+
+useEffect(() => {
+   const getHighScore = async () => {
+     try {
+       const score = await AsyncStorage.getItem('highScore');
+       if (score !== null) {
+         setHighScore(JSON.parse(score));
+       }
+     } catch (error) {
+       console.error('Error retrieving high score', error);
+     }
+   };
+
+   getHighScore();
+}, []);
+
 
    return (
       <View style={styles.container}>
          <Text style={styles.title}>Penny For Your Thoughts</Text>
+         <Text style={styles.HighScore}>high score: {highScore}</Text>
          <View style={styles.buttonsContainer}>
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('PFYTgame')}>
-               <Text style={styles.buttonText}>Start Game</Text>
+               <Text style={styles.buttonText}>Start New Game</Text>
             </TouchableOpacity>
             <SettingsButton onPress={() => setIsSettingsModalVisible(true)} />
             <SettingsModal
@@ -60,6 +95,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
  },
+ HighScore: {
+   fontFamily: 'IrishGrover-Regular',
+    fontSize: 24,
+    marginBottom: 20,
+    color: 'black',
+    position: 'absolute',
+    top: 25,
+    left: 25, 
+    textAlign: 'left',
+ }
 });
 
 export default MenuScreen;

@@ -5,6 +5,7 @@ import SettingsButton from '../components/SettingsButton';
 import SettingsModal from './SettingsModal';
 import { SettingsContext } from '../components/SettingsContext';
 import WordsManager from '../components/WordsManager';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const PFYTgame = () => {
  const [isSettingsModalVisible, setIsSettingsModalVisible] = useState(false);
@@ -63,8 +64,30 @@ const PFYTgame = () => {
     checkGameCompletion();
  }, [word, targetWord]);
 
+
+ const storeScore = async (score) => {
+  try {
+     await AsyncStorage.setItem('lastScore', JSON.stringify(score));
+  } catch (error) {
+     console.error('Error storing score', error);
+  }
+ };
+
+ const updateHighScore = async (newScore) => {
+  try {
+     const highScore = await AsyncStorage.getItem('highScore');
+     if (highScore === null || newScore > highScore) {
+       await AsyncStorage.setItem('highScore', JSON.stringify(newScore));
+     }
+  } catch (error) {
+     console.error('Error updating high score', error);
+  }
+ };
+
  const resetGame = () => {
     setScore(score + money);
+    storeScore(score + money);
+    updateHighScore(score + money);
     setMoney(120);
     const newWord = wordsManager.selectRandomWord();
     setWord(Array(newWord.length).fill('_'));
