@@ -1,44 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import '../../assets/fonts/IrishGrover-Regular.ttf'
 import SettingsButton from '../components/SettingsButton';
 import SettingsModal from './SettingsModal';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
 
 const MenuScreen = ({ navigation }) => {
   const [isSettingsModalVisible, setIsSettingsModalVisible]=useState(false);
   const [lastScore, setLastScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
 
-  useEffect(() => {
-   const getLastScore = async () => {
-     try {
-       const score = await AsyncStorage.getItem('lastScore');
-       if (score !== null) {
-         setLastScore(JSON.parse(score));
+  //the user's score is fetched and updated instantly when the user achieves a new high score, no longer needing to reload the app
+  useFocusEffect(
+   useCallback(() => {
+     const fetchHighScore = async () => {
+       try {
+         const highScore = await AsyncStorage.getItem('highScore');
+         if (highScore !== null) {
+           setHighScore(JSON.parse(highScore));
+         }
+       } catch (error) {
+         console.error('Error retrieving high score', error);
        }
-     } catch (error) {
-       console.error('Error retrieving last score', error);
-     }
-   };
+     };
 
-   getLastScore();
-}, []);
+     fetchHighScore();
+   }, [])
+);
 
-useEffect(() => {
-   const getHighScore = async () => {
-     try {
-       const score = await AsyncStorage.getItem('highScore');
-       if (score !== null) {
-         setHighScore(JSON.parse(score));
-       }
-     } catch (error) {
-       console.error('Error retrieving high score', error);
-     }
-   };
-
-   getHighScore();
-}, []);
 
 
    return (
