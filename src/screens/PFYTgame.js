@@ -64,7 +64,7 @@ const PFYTgame = () => {
     checkGameCompletion();
  }, [word, targetWord]);
 
-
+ //store the user's score
  const storeScore = async (score) => {
   try {
      await AsyncStorage.setItem('lastScore', JSON.stringify(score));
@@ -73,6 +73,7 @@ const PFYTgame = () => {
   }
  };
 
+ //update the user's high score
  const updateHighScore = async (newScore) => {
   try {
      const highScore = await AsyncStorage.getItem('highScore');

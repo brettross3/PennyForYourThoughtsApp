@@ -8,7 +8,7 @@ import { useFocusEffect } from '@react-navigation/native';
 
 const MenuScreen = ({ navigation }) => {
   const [isSettingsModalVisible, setIsSettingsModalVisible]=useState(false);
-  const [lastScore, setLastScore] = useState(0);
+  
   const [highScore, setHighScore] = useState(0);
 
   //the user's score is fetched and updated instantly when the user achieves a new high score, no longer needing to reload the app
