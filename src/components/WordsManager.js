@@ -1,7 +1,7 @@
 // WordsManager.js
 
 const words = [
-    'jar', 'geese', 'knowledgeable', 'cross', 'stream', 'signal', 'groovy', 'icy', 
+    'jar', 'geese', 'knowledgeable', 'cross', 'stream', 'signal', 'groovy', 'icy', 'mint', 'sphynx',  
     'awake', 'achiever', 'ruthless', 'burst', 'strange', 'curious', 'grouchy', 
     'abiding', 'average', 'confess', 'laugh', 'waggish', 'noiseless', 'tedious', 
     'teeny', 'endurable', 'jelly', 'share', 'female', 'detail', 'noxious', 'rigid', 
@@ -40,10 +40,35 @@ const words = [
     'reticulated', 'multifarious', 'procrastination', 'perspicacious', 'indefatigable',
     'exacerbate', 'idiosyncratic', 'insouciant', 'obfuscate', 'quintessential',
     'superfluous', 'serendipity', 'mellifluous', 'effervescent', 'ubiquitous',
-    'grandiloquent', 'ineffable', 'extemporaneous', 'equanimity', 'mellifluous',
-    'circumlocution', 'perspicacious', 'ineffable', 'magnanimous', 'antediluvian',
+    'grandiloquent', 'ineffable', 'extemporaneous', 'equanimity', 'vaporize',
+    'circumlocution', 'precipitation', 'gizmo', 'magnanimous', 'antediluvian',
     'sophisticated', 'paraphernalia', 'interminable', 'sagacious', 'incandescent',
-    'inscrutable', 'ineffable', 'nebulous', 'supercilious', 'indomitable'
+    'inscrutable', 'blitz', 'nebulous', 'supercilious', 'indomitable', 'eloquent', 'ephemeral', 'enervate', 'epiphany', 
+    'epistolary', 'eponymous', 'equilibrium', 'equivocal', 'erudite', 'esoteric', 'goo',
+    'ethereal', 'euphemism', 'evanescent', 'evocative', 'peekaboo', 'exculpate', 'exigent', 'expedient', 'expunge', 'extemporaneous',
+    'extirpate', 'extraneous', 'facetious', 'fallacious', 'fastidious', 'fatuous', 'felicitous', 'feral', 'fervent', 'fetid',
+    'fiduciary', 'flagrant', 'flippant', 'florid', 'fractious', 'furtive', 'garrulous', 'grunt', 'gregarious', 'guttural',
+    'haberdashery', 'halcyon', 'harbinger', 'harrowing', 'hedonistic', 'hegemony', 'heterogeneous', 'hirsute', 'hubris', 'iconoclast',
+    'idyllic', 'ignominious', 'impecunious', 'impetuous', 'imprudent', 'incendiary', 'incipient', 'incognito', 'indelible', 'indolent',
+    'indomitable', 'voodoo', 'galaxy', 'infinitesimal', 'ingenuous', 'inimical', 'innocuous', 'insatiable', 'insidious', 'insipid',
+    'waltz', 'intrepid', 'inure', 'inveterate', 'invidious', 'irascible', 'juxtapose', 'laconic', 'lambent', 'languid',
+    'largesse', 'legerdemain', 'lenient', 'lethargic', 'levity', 'licentious', 'limpid', 'lithe', 'lucid', 'lugubrious',
+    'macabre', 'machiavellian', 'magnanimous', 'malevolent', 'malfeasance', 'malleable', 'maverick', 'mendacious', 'mercurial', 'modicum',
+    'mollify', 'moribund', 'munificent', 'nefarious', 'nocturnal', 'nonchalant', 'nondescript', 'noxious', 'obdurate', 'obfuscate',
+    'oblivion', 'obsequious', 'obtuse', 'officious', 'ominous', 'ostentatious', 'ostracize', 'panacea', 'pariah', 'parvenu',
+    'pathos', 'paucity', 'pejorative', 'penchant', 'pernicious', 'petulant', 'pique', 'placate', 'plethora', 'polemic',
+    'portent', 'precocious', 'predilection', 'preponderance', 'prerogative', 'proclivity', 'profound', 'propensity', 'protean', 'provenance',
+    'prurient', 'pugnacious', 'pulchritudinous', 'pusillanimous', 'quaint', 'querulous', 'quixotic', 'quotidian', 'rancorous', 'rapport',
+    'ravenous', 'recalcitrant', 'reclusive', 'redolent', 'replete', 'repudiate', 'resplendent', 'rhetoric', 'risible', 'rubicon',
+    'ruminate', 'sagacity', 'salient', 'sanguine', 'sardonic', 'scintillating', 'scrutinize', 'eclipse', 'sibilant', 'soporific',
+    'spurious', 'stalwart', 'strident', 'sublime', 'succinct', 'sundry', 'scissors', 'surreptitious', 'sycophant', 'taciturn',
+    'tantamount', 'temerity', 'tenuous', 'timorous', 'torpid', 'trepidation', 'truculent', 'tumultuous', 'ubiquitous', 'umbrage',
+    'unctuous', 'unilateral', 'unrequited', 'untenable', 'urbane', 'usurp', 'vacillate', 'vapid', 'vehement', 'venal',
+    'veracity', 'verbose', 'verisimilitude', 'vex', 'vicarious', 'vigilant', 'vilify', 'vindicate', 'vitriolic', 'vivacious',
+    'volatile', 'wanton', 'matrix', 'wily', 'winsome', 'wistful', 'zealous', 'zenith', 'zephyr', 'zeitgeist', 'onyx', 'pixel', 'gym', 'askew',
+    'bikini', 'oxidize', 'pygmy', 'schmuck', 'haiku', 'jaundice', 'cry', 'nymph', 'by', 'phlegm', 'wavy', 'cysts', 'hyphen', 'psych', 'equip',
+    'yummy', 'doughnut', 'donut', 'fake', 'kiwifruit', 'klutz', 'shiv', 'schnapps', 'larynx', 'zombie', 'fishhook', 'bookkeeper', 'rainbow', 'kiosk',
+    'razzmatazz', 'xylophone', 'crypt', 'zipper', 'yachtsman', 'banjo', 'squawk', 'rhubarb', 'jiujitsu', 'indubitably', 'abyss'
    ];
    
    const selectRandomWord = () => {
