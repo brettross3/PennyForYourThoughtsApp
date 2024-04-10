@@ -96,15 +96,14 @@ const styles = StyleSheet.create({
       textAlign: 'left',
    },
    bottomContainer: {
-      position: 'absolute',
+      justifyContent: 'center',
+      alignItems: 'center',
       bottom: 0,
       right: 0,
       flexDirection: 'row',
-      justifyContent: 'flex-end',
-      alignItems: 'flex-end',
+      
     },
     SettingsButton: {
-      position: 'absolute',
       bottom: -5, // Adjusted margin (adjust as needed)
       right: -5, // Adjusted margin (adjust as needed)
       zIndex: 10, // Ensure button renders on top
