@@ -1,16 +1,17 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Vibration } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import SummaryPage from '../screens/SummaryPage';
 import SettingsButton from '../components/SettingsButton';
 import SettingsModal from './SettingsModal';
 import { SettingsContext } from '../components/SettingsContext';
 import WordsManager from '../components/WordsManager';
+import { SoundEffects, playCorrectSound, playIncorrectSound, playCompleteSound, playGameOverSound } from '../components/SoundEffects';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const PFYTgame = () => {
  const [isSettingsModalVisible, setIsSettingsModalVisible] = useState(false);
- const { isVibrateEnabled } = useContext(SettingsContext);
-
+ const { isSoundEnabled } = useContext(SettingsContext);
+  
  const [targetWord, setTargetWord] = useState('');
  const [word, setWord] = useState([]);
  const [guessedLetters, setGuessedLetters] = useState([]);
@@ -44,11 +45,14 @@ const PFYTgame = () => {
       setWord(newWord);
       if (targetWord.includes(letter)) {
         setCorrectLetters([...correctLetters, letter]);
+        if (isSoundEnabled) {
+          playCorrectSound();
+        }
       } else {
         setIncorrectLetters([...incorrectLetters, letter]);
         setMoney(money - 10);
-        if (isVibrateEnabled) {
-          Vibration.vibrate(500);
+        if (isSoundEnabled) {
+          playIncorrectSound();
         }
       }
     }
@@ -58,11 +62,18 @@ const PFYTgame = () => {
     const checkGameCompletion = () => {
       if (word.join('') === targetWord) {
         setGameComplete(true);
+        if (isSoundEnabled) {
+          playCompleteSound();
+        }
+      } else {
+        if ( money === 0){
+          playGameOverSound();
+        }
       }
     };
 
     checkGameCompletion();
- }, [word, targetWord]);
+ }, [word, targetWord, money]);
 
  //store the user's score
  const storeScore = async (score) => {
@@ -156,8 +167,10 @@ const PFYTgame = () => {
           onPress={showSummaryPage().onPress}
         />
       )}
+      <View style={styles.bottomContainer}>
       <SettingsButton onPress={() => setIsSettingsModalVisible(true)} />
       <SettingsModal visible={isSettingsModalVisible} onClose={() => setIsSettingsModalVisible(false)} />
+      </View>
     </View>
  );
 };
@@ -167,6 +180,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#bcd8c1',
  },
  scoreContainer: {
     position: 'absolute',
@@ -175,11 +189,14 @@ const styles = StyleSheet.create({
  },
  scoreText: {
     fontSize: 20,
+    fontFamily: 'IrishGrover-Regular',
     color: 'black',
  },
  header: {
-    fontSize: 24,
+    fontSize: 36,
     marginBottom: 20,
+    fontFamily: 'IrishGrover-Regular',
+    color: 'white',
  },
  alphabet: {
     flexDirection: 'row',
@@ -189,17 +206,29 @@ const styles = StyleSheet.create({
  letterButton: {
     margin: 5,
     padding: 10,
-    backgroundColor: '#ccc',
+    backgroundColor: '#222e50',
  },
  letterText: {
     fontSize: 18,
+    fontFamily: 'IrishGrover-Regular',
+    color: 'white',
  },
  word: {
     fontSize: 24,
     marginTop: 20,
+    fontFamily: 'IrishGrover-Regular',
+    color: 'black',
+    marginTop: 30,
  },
  guessedLetterButton: {
-  opacity: 0, // Make the button invisible
+  opacity: 0,
+},
+bottomContainer: {
+  position: 'absolute',
+  paddingBottom:20,
+  paddingRight: 20,
+  bottom: 0,
+  right: 0,
 },
 });
 

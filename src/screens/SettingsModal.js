@@ -6,7 +6,7 @@ import { SettingsContext } from "../components/SettingsContext";
 
 const SettingsModal = ({ visible, onClose, }) => {
   const { isMusicEnabled, toggleMusic } = useContext(SettingsContext);
-  const { isVibrateEnabled, toggleVibrate} = useContext(SettingsContext);
+  const { isSoundEnabled, toggleSound} = useContext(SettingsContext);
 
   const modalContent = (
     <View style={styles.modalContainer}>
@@ -21,9 +21,16 @@ const SettingsModal = ({ visible, onClose, }) => {
             <Switch value={isMusicEnabled} onValueChange={toggleMusic} />
           </View>
           <View style={styles.option}>
-            <Text style={[styles.optionText, { flex: 1 }]}>Vibrate</Text>
-            <Switch value={isVibrateEnabled} onValueChange={toggleVibrate} />
+            <Text style={[styles.optionText, { flex: 1 }]}>Sound</Text>
+            <Switch value={isSoundEnabled} onValueChange={toggleSound} />
           </View>
+          <View style={styles.attribution}>
+          <Text style={styles.attributionText}>
+            Background music: "Village Consort" Kevin MacLeod (incompetech.com)
+            Licensed under Creative Commons: By Attribution 4.0 License
+            http://creativecommons.org/licenses/by/4.0/
+          </Text>
+        </View>
         </View>
       </View>
     </View>
@@ -88,5 +95,18 @@ const styles = StyleSheet.create({
       fontFamily: 'IrishGrover-Regular',
      fontSize: 28,
      color: 'white',
+   },
+   attribution: {
+    flexDirection: 'row',
+    alignItems: 'center',
+   marginTop: 20,
+   paddingHorizontal: '10%',
+   },
+   attributionText: {
+    flex:1,
+    fontFamily: 'IrishGrover-Regular',
+    fontSize: 12,
+    color: 'white',
+    textAlign: 'center',
    },
 });
