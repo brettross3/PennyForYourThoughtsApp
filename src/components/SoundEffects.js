@@ -23,7 +23,7 @@ const playCompleteSound = () => {
   completeSound.play();
 };
 
-const playGamOverSound = () => {
+const playGameOverSound = () => {
   gameOverSound.setVolume(1.0);
   gameOverSound.play();
 };
@@ -32,4 +32,4 @@ const SoundEffects = () => {
   return null;
 };
 
-export { SoundEffects, playCorrectSound, playIncorrectSound, playCompleteSound, playGamOverSound };
+export { SoundEffects, playCorrectSound, playIncorrectSound, playCompleteSound, playGameOverSound };

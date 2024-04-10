@@ -5,7 +5,7 @@ import SettingsButton from '../components/SettingsButton';
 import SettingsModal from './SettingsModal';
 import { SettingsContext } from '../components/SettingsContext';
 import WordsManager from '../components/WordsManager';
-import { SoundEffects, playCorrectSound, playIncorrectSound, playCompleteSound, playGamOverSound } from '../components/SoundEffects';
+import { SoundEffects, playCorrectSound, playIncorrectSound, playCompleteSound, playGameOverSound } from '../components/SoundEffects';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const PFYTgame = () => {
@@ -65,11 +65,15 @@ const PFYTgame = () => {
         if (isSoundEnabled) {
           playCompleteSound();
         }
+      } else {
+        if ( money === 0){
+          playGameOverSound();
+        }
       }
     };
 
     checkGameCompletion();
- }, [word, targetWord]);
+ }, [word, targetWord, money]);
 
 
  const storeScore = async (score) => {
@@ -162,8 +166,10 @@ const PFYTgame = () => {
           onPress={showSummaryPage().onPress}
         />
       )}
+      <View style={styles.bottomContainer}>
       <SettingsButton onPress={() => setIsSettingsModalVisible(true)} />
       <SettingsModal visible={isSettingsModalVisible} onClose={() => setIsSettingsModalVisible(false)} />
+      </View>
     </View>
  );
 };
@@ -173,6 +179,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#bcd8c1',
  },
  scoreContainer: {
     position: 'absolute',
@@ -181,11 +188,14 @@ const styles = StyleSheet.create({
  },
  scoreText: {
     fontSize: 20,
+    fontFamily: 'IrishGrover-Regular',
     color: 'black',
  },
  header: {
-    fontSize: 24,
+    fontSize: 36,
     marginBottom: 20,
+    fontFamily: 'IrishGrover-Regular',
+    color: 'white',
  },
  alphabet: {
     flexDirection: 'row',
@@ -195,17 +205,29 @@ const styles = StyleSheet.create({
  letterButton: {
     margin: 5,
     padding: 10,
-    backgroundColor: '#ccc',
+    backgroundColor: '#222e50',
  },
  letterText: {
     fontSize: 18,
+    fontFamily: 'IrishGrover-Regular',
+    color: 'white',
  },
  word: {
     fontSize: 24,
     marginTop: 20,
+    fontFamily: 'IrishGrover-Regular',
+    color: 'black',
+    marginTop: 30,
  },
  guessedLetterButton: {
-  opacity: 0, // Make the button invisible
+  opacity: 0,
+},
+bottomContainer: {
+  position: 'absolute',
+  paddingBottom:20,
+  paddingRight: 20,
+  bottom: 0,
+  right: 0,
 },
 });
 
